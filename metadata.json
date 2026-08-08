@@ -1,0 +1,6 @@
+{
+  "name": "Habesha Couture",
+  "description": "Luxury Ethiopian Fashion Brand featuring bespoke Habesha Kemis, modern menswear, royal heritage collections, and an interactive luxury boutique and admin suite.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
