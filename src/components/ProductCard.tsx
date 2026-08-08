@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Product, Currency } from '../types';
 import { CURRENCY_RATES } from '../data/mockData';
-import { Heart, Eye, ShoppingBag, Scissors, Check } from 'lucide-react';
+import { Heart, Eye, ShoppingBag, Scissors, Check, Star } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -44,30 +44,25 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div 
       onClick={() => onQuickView(product)}
-      className="group cursor-pointer bg-white rounded-2xl border border-[#E6D9C0] hover:border-[#D4AF37] shadow-xs hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden relative"
+      className="group cursor-pointer bg-[#181310] rounded-2xl border border-[#3A2A1D] hover:border-[#D4AF37] shadow-xl transition-all duration-300 flex flex-col overflow-hidden relative text-[#FAF0D7]"
     >
       
-      {/* Top Floating Badges */}
+      {/* Top Floating Badges & Wishlist */}
       <div className="absolute top-3 left-3 right-3 z-20 flex items-center justify-between pointer-events-none">
         <div className="flex flex-col gap-1 items-start">
           {hasDiscount && (
-            <span className="bg-[#8B0000] text-[#FFD700] text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full border border-[#D4AF37]/40 shadow-md animate-pulse">
+            <span className="bg-[#8B0000] text-[#FFD700] text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-md border border-[#D4AF37]/40 shadow-sm animate-pulse">
               {discountPercent}% OFF
             </span>
           )}
           {product.isFeatured && (
-            <span className="bg-[#1F1510] text-[#E5D3AC] text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full border border-[#D4AF37]/40 shadow-md">
+            <span className="bg-[#181310]/95 text-[#D4AF37] text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-md border border-[#D4AF37]/40 shadow-sm">
               Imperial Edition
             </span>
           )}
-          {product.isNewArrival && !product.isFeatured && (
-            <span className="bg-[#8B0000] text-white text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full shadow-md">
-              New Atelier
-            </span>
-          )}
           {product.isBespokeAvailable && (
-            <span className="bg-[#FAF0D7] text-[#5C3A10] border border-[#E5D3AC] text-[10px] font-serif font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
-              <Scissors className="w-3 h-3 text-[#8B0000]" />
+            <span className="bg-[#181310]/95 backdrop-blur-md text-[#FAF0D7] border border-[#3A2A1D] text-[10px] font-serif font-bold px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">
+              <Scissors className="w-3 h-3 text-[#D4AF37]" />
               <span>Bespoke Fit</span>
             </span>
           )}
@@ -82,7 +77,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           className={`p-2 rounded-full backdrop-blur-md transition-all pointer-events-auto shadow-md ${
             isWishlisted 
               ? 'bg-[#8B0000] text-white' 
-              : 'bg-white/80 text-[#1F1510] hover:text-[#8B0000] hover:bg-white'
+              : 'bg-[#181310]/80 text-[#FAF0D7] hover:text-[#D4AF37] hover:bg-[#181310]'
           }`}
           title={isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
         >
@@ -90,8 +85,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </button>
       </div>
 
-      {/* Product Image Frame with Hover Secondary Preview */}
-      <div className="relative aspect-[1/0.92] sm:aspect-square bg-[#F7F3E9] overflow-hidden">
+      {/* Product Image Frame with Hover Quick View */}
+      <div className="relative aspect-[3/4] overflow-hidden bg-[#241C16]">
         <img
           src={product.images[activeImageIndex] || product.images[0]}
           alt={product.name}
@@ -103,94 +98,107 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           onMouseLeave={() => setActiveImageIndex(0)}
         />
 
-        {/* Hover Quick Action Layer */}
-        <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-3">
+        {/* Quick View Button on Bottom Right of Image */}
+        <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity z-10">
           <button
             onClick={(e) => {
               e.stopPropagation();
               onQuickView(product);
             }}
-            className="w-full py-2 bg-[#1F1510]/90 backdrop-blur-md text-[#E5D3AC] hover:bg-[#8B0000] hover:text-white transition font-serif text-[10px] font-semibold uppercase tracking-wider rounded-full flex items-center justify-center gap-1.5 shadow-lg border border-[#D4AF37]/30"
+            className="p-2.5 bg-[#181310]/90 hover:bg-[#181310] text-[#FAF0D7] rounded-full shadow-lg transition transform hover:scale-110 cursor-pointer border border-[#3A2A1D]"
+            title="Quick View"
           >
-            <Eye className="w-3.5 h-3.5 text-[#D4AF37]" />
-            <span>Details</span>
+            <Eye className="w-4 h-4 text-[#D4AF37]" />
           </button>
         </div>
       </div>
 
-      {/* Product Info Section */}
-      <div className="p-4 flex-1 flex flex-col justify-between space-y-2.5 bg-white">
-        
+      {/* Product Info Section Matching the Uploaded UI UX Design */}
+      <div className="p-5 flex-1 flex flex-col justify-between bg-[#181310] space-y-4">
         <div>
-          {/* Amharic Title & Category */}
-          <div className="flex items-center justify-between text-xs text-[#7A6952]">
-            {product.amharicName ? (
-              <span className="font-serif italic text-amber-900/90 font-bold">{product.amharicName}</span>
-            ) : (
-              <span className="text-[10px] tracking-wide font-medium uppercase text-gray-500">{product.category}</span>
-            )}
-          </div>
-
-          {/* Product Main Title */}
-          <h3 className="font-serif text-base font-bold text-[#1F1510] group-hover:text-[#8B0000] transition-colors line-clamp-1 mt-1">
-            {product.name}
-          </h3>
-
-          {/* Stock Status Badge */}
-          <div className="flex items-center justify-between mt-1">
-            {/* Stock Status Indicator */}
-            {product.inStock && product.stockQuantity > 0 ? (
-              <span className="inline-block text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-                In Stock ({product.stockQuantity})
-              </span>
-            ) : (
-              <span className="inline-block text-[10px] font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded">
-                Out of Stock
-              </span>
-            )}
-          </div>
-        </div>
-
-        {/* Price & Add to Bag Row */}
-        <div className="flex items-center justify-between pt-1">
-          <div>
-            <div className="flex items-baseline gap-2">
-              <span className="font-serif text-lg font-bold text-[#1F1510]">
-                {rateObj.symbol}{convertedPrice.toLocaleString()}
-              </span>
-              {originalPriceConverted && (
-                <span className="text-xs text-[#9E8E7C] line-through">
-                  {rateObj.symbol}{originalPriceConverted.toLocaleString()}
-                </span>
-              )}
+          {/* Top Meta & Star Rating */}
+          <div className="flex items-center justify-between text-[11px] mb-2">
+            <span className="font-serif uppercase tracking-wider text-[#D4AF37] font-semibold">
+              {product.tibebPattern || product.category || 'SILK-THREAD BLEND'}
+            </span>
+            <div className="flex items-center gap-1 text-[#D4AF37] bg-[#2A2017] px-2 py-0.5 rounded-full border border-[#D4AF37]/20">
+              <Star className="w-3 h-3 fill-[#D4AF37]" />
+              <span className="font-bold text-[10px]">4.8 <span className="text-gray-400 font-normal">(38)</span></span>
             </div>
           </div>
 
-          <button
-            onClick={handleQuickAdd}
-            disabled={!product.inStock || product.stockQuantity <= 0}
-            className={`px-4 py-2 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 shadow-sm ${
-              !product.inStock || product.stockQuantity <= 0
-                ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                : addedAnimation 
-                  ? 'bg-emerald-700 text-white' 
-                  : 'bg-[#1F1510] text-[#E5D3AC] hover:bg-[#8B0000] hover:text-white'
-            }`}
-          >
-            {!product.inStock || product.stockQuantity <= 0 ? (
-              <span>Out of Stock</span>
-            ) : addedAnimation ? (
-              <>
-                <Check className="w-3.5 h-3.5" />
-                <span>Added</span>
-              </>
-            ) : (
-              <>
-                <ShoppingBag className="w-3.5 h-3.5 text-[#D4AF37]" />
-                <span>Add</span>
-              </>
-            )}
-          </button>
+          {/* Product Main Title */}
+          <h3 className="font-serif text-lg font-bold text-[#FAF0D7] group-hover:text-[#D4AF37] transition-colors line-clamp-1">
+            {product.name}
+          </h3>
+
+          {/* Amharic Subtitle */}
+          {product.amharicName && (
+            <p className="font-serif text-xs text-[#D4AF37]/80 italic mt-0.5">
+              {product.amharicName}
+            </p>
+          )}
+
+          {/* Description Snippet */}
+          <p className="text-xs text-[#C5B59B] font-sans line-clamp-2 mt-2 leading-relaxed">
+            {product.description || "Exquisite bespoke traditional Habesha Kemis masterpiece hand-woven by master artisans."}
+          </p>
+        </div>
+
+        {/* Price & Availability Section */}
+        <div className="space-y-3 pt-3 border-t border-[#3A2A1D]">
+          <div className="flex items-end justify-between">
+            <div>
+              <div className="text-[10px] uppercase font-serif tracking-widest text-gray-400">Price</div>
+              <div className="font-serif font-bold text-lg text-[#D4AF37]">
+                {convertedPrice.toLocaleString()} <span className="text-xs font-normal text-gray-300">{rateObj.symbol}</span>
+              </div>
+            </div>
+
+            <div className="text-right">
+              <div className="text-[10px] uppercase font-serif tracking-widest text-gray-400">Availability</div>
+              <div className="text-xs font-semibold text-emerald-400">
+                {product.inStock && product.stockQuantity > 0 ? `${product.stockQuantity} Ready in Stock` : 'Made to Order'}
+              </div>
+            </div>
+          </div>
+
+          {/* Action Buttons Row */}
+          <div className="grid grid-cols-2 gap-2 pt-1">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onQuickView(product);
+              }}
+              className="px-3 py-2.5 bg-transparent hover:bg-[#2A2017] text-[#FAF0D7] border border-[#D4AF37]/40 rounded-xl font-serif text-[11px] font-bold uppercase tracking-wider transition flex items-center justify-center gap-1.5 cursor-pointer"
+            >
+              <Scissors className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <span>Custom Tailor</span>
+            </button>
+            <button
+              onClick={handleQuickAdd}
+              disabled={!product.inStock || product.stockQuantity <= 0}
+              className={`px-3 py-2.5 rounded-xl font-serif text-[11px] font-bold uppercase tracking-wider transition flex items-center justify-center gap-1.5 shadow-md cursor-pointer ${
+                !product.inStock || product.stockQuantity <= 0
+                  ? 'bg-gray-800 text-gray-500 cursor-not-allowed'
+                  : addedAnimation
+                    ? 'bg-emerald-700 text-white'
+                    : 'bg-[#D4AF37] hover:bg-[#C59B27] text-[#181310]'
+              }`}
+            >
+              {addedAnimation ? (
+                <>
+                  <Check className="w-3.5 h-3.5" />
+                  <span>Added</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingBag className="w-3.5 h-3.5" />
+                  <span>Add to Cart</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
 
       </div>

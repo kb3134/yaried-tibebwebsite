@@ -63,25 +63,12 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       {/* Top Luxury Announcement Ticker */}
-      <div className="bg-[#0A0807] text-[#F5D77F] text-xs font-serif font-bold py-2 px-3 sm:px-6 border-b border-[#D4AF37]/30 text-center flex items-center justify-between tracking-widest uppercase select-none">
-        <div className="max-w-7xl mx-auto w-full flex items-center justify-between gap-2">
-          <span className="hidden md:inline-flex items-center gap-1.5 text-[#D4AF37]">
+      <div className="bg-[#0A0807] text-[#F5D77F] text-xs font-serif font-bold py-2 px-3 sm:px-6 border-b border-[#D4AF37]/30 text-center flex items-center justify-center tracking-widest uppercase select-none">
+        <div className="max-w-7xl mx-auto w-full flex items-center justify-center gap-2">
+          <span className="inline-flex items-center gap-1.5 text-[#D4AF37]">
             <Sparkles className="w-3.5 h-3.5 text-[#F5D77F]" />
-            <span className="font-bold tracking-[0.18em]">ADDIS ABABA ATELIER</span>
+            <span className="font-bold tracking-[0.18em]">YARED TIBEB ATELIER — AUTHENTIC ETHIOPIAN HAUTE COUTURE & BESPOKE KEMIS</span>
           </span>
-
-          <p className="mx-auto flex items-center justify-center gap-2 font-bold text-[10px] sm:text-xs tracking-wider sm:tracking-[0.2em]">
-            <span className="text-[#F5D77F]">❖</span>
-            <span>TIMELESS TRADITION, MODERN LUXURY.</span>
-            <span className="text-[#F5D77F]">❖</span>
-          </p>
-
-          {/* Currency Switcher Dropdown */}
-          <div className="flex items-center gap-2 text-[11px]">
-            <span className="hidden sm:inline text-gray-400 font-sans text-[10px]">CURRENCY:</span>
-            <div className="flex items-center gap-1.5">
-            </div>
-          </div>
         </div>
       </div>
 

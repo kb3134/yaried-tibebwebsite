@@ -331,6 +331,46 @@ export const ContactUsPage: React.FC<ContactUsPageProps> = ({ onSubmitContactMes
 
         </div>
 
+        {/* Studio Location Map Section */}
+        <div className="max-w-6xl mx-auto bg-[#1F1915] border-2 border-[#D4AF37]/40 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#D4AF37]/20 pb-5">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2 text-[#D4AF37]">
+                <MapPin className="w-5 h-5" />
+                <span className="text-xs font-mono font-bold uppercase tracking-widest">VISIT OUR FLAGSHIP BOUTIQUE</span>
+              </div>
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+                Check Out Our Location on Map
+              </h2>
+              <p className="text-xs sm:text-sm text-gray-300 font-sans">
+                Bedria City Mall, Ground Floor, Haya Hulet, Addis Ababa, Ethiopia
+              </p>
+            </div>
+            <a 
+              href="https://maps.google.com/?q=Bedria+City+Mall+Haya+Hulet+Addis+Ababa" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-[#D4AF37] hover:bg-white text-[#1A1817] font-serif font-bold text-xs uppercase tracking-widest rounded-xl transition shadow-md self-start sm:self-auto"
+            >
+              Open in Google Maps
+            </a>
+          </div>
+
+          <div className="relative w-full rounded-2xl overflow-hidden border border-[#D4AF37]/40 shadow-inner bg-[#120E0C] aspect-[16/9] lg:aspect-[21/9]">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.6116185802666!2d38.78582688601432!3d9.00783784189534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85ce3381afd9%3A0x6fd3435ea2423db3!2zQmVkcmlhIENpdHkgTWFsbCBsIEhheWEgSHVsZXQgbCDhiaDhi7XhiKrhi6sg4Yiy4YmyIOGInuGIjSBsIOGIg-GLqyDhiIHhiIjhibU!5e0!3m2!1sen!2set!4v1786173207023!5m2!1sen!2set"
+              width="100%"
+              height="100%"
+              style={{ border: 0, filter: 'contrast(1.05) saturate(1.1)' }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="Yared Tibeb Studio Location - Bedria City Mall, Haya Hulet"
+              className="w-full h-full min-h-[380px]"
+            />
+          </div>
+        </div>
+
       </div>
     </div>
   );

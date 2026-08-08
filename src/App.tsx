@@ -1010,18 +1010,18 @@ export default function App() {
                 onOpenUploadModal={() => setIsHomeUploadModalOpen(true)}
               />
 
-              <div id="recent-uploads-section">
-                <RecentUploadsShowcase
-                  products={products}
-                  currency={currency}
-                  onQuickView={setQuickViewProduct}
-                  onAddToCart={handleAddToCart}
-                  onOpenUploadModal={() => setIsHomeUploadModalOpen(true)}
-                />
-              </div>
-
               {/* About Us Section */}
               <AboutUsSection aboutUsUrl={brandingImages.aboutUsUrl} socialLinks={brandingImages.socialLinks} />
+
+              {/* Live Show Atelier Showcase */}
+              <RecentUploadsShowcase
+                products={products}
+                currency={currency}
+                onQuickView={setQuickViewProduct}
+                onAddToCart={handleAddToCart}
+                isWishlisted={(id) => wishlistProductIds.includes(id)}
+                onToggleWishlist={handleToggleWishlist}
+              />
 
               {/* Voices of Heritage Testimonials */}
               <TestimonialsSection />

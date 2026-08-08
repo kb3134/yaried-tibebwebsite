@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, logoUrl }) => {
           {/* Navigation Links */}
           <div className="space-y-3">
             <h4 className="font-serif text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
-              NAVIGATION
+              EXPLORE ATELIER
             </h4>
             <ul className="text-xs space-y-2 text-gray-300 font-sans">
               <li>
@@ -61,7 +61,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, logoUrl }) => {
                   onClick={() => onNavigate && onNavigate('home')} 
                   className="hover:text-[#D4AF37] transition"
                 >
-                  Home
+                  Home Showcase
                 </button>
               </li>
               <li>
@@ -94,15 +94,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, logoUrl }) => {
                   className="hover:text-[#D4AF37] transition cursor-pointer"
                 >
                   Contact Us
-                </button>
-              </li>
-              <li className="pt-1.5 border-t border-white/10">
-                <button 
-                  onClick={() => onNavigate && onNavigate('admin')} 
-                  className="text-[#D4AF37] font-bold hover:text-amber-200 transition flex items-center gap-1.5 cursor-pointer"
-                >
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>Admin Dashboard</span>
                 </button>
               </li>
             </ul>

@@ -2,7 +2,6 @@ import React from 'react';
 import { Eye, Target } from 'lucide-react';
 import { SocialLinks } from '../types';
 import { HABESHA_KEMIS_IMAGE } from '../data/mockData';
-import { FollowUsSection } from './FollowUsSection';
 
 interface AboutUsSectionProps {
   aboutUsUrl?: string;
@@ -113,8 +112,9 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({ aboutUsUrl, soci
 
         </div>
 
-        {/* Follow Us Section */}
-        <FollowUsSection />
+
+
+
 
       </div>
     </section>
