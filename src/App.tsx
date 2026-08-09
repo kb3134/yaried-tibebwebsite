@@ -819,6 +819,7 @@ export default function App() {
       });
       if (res.ok) {
         fetchProducts();
+        fetchAnalytics();
       } else {
         console.warn('Backend product creation warning, keeping local state.');
       }
@@ -840,6 +841,7 @@ export default function App() {
       });
       if (res.ok) {
         fetchProducts();
+        fetchAnalytics();
       } else {
         console.warn('Backend product update warning, keeping local state.');
       }
@@ -859,6 +861,7 @@ export default function App() {
       });
       if (res.ok) {
         fetchProducts();
+        fetchAnalytics();
       } else {
         console.warn('Backend product deletion warning, keeping local state.');
       }
