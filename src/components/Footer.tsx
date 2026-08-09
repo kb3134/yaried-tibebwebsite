@@ -96,6 +96,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, logoUrl }) => {
                   Contact Us
                 </button>
               </li>
+              <li>
+                <a 
+                  href="/admin" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.history.pushState({}, '', '/admin');
+                    if (onNavigate) onNavigate('admin');
+                  }}
+                  className="text-amber-400 hover:text-[#D4AF37] transition flex items-center gap-1.5 font-medium cursor-pointer pt-1"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <span>Admin Portal (/admin)</span>
+                </a>
+              </li>
             </ul>
           </div>
 
